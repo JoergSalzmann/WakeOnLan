@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WakeOnLanClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UseOwnServerPort" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="OwnServerPortNumber" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">43538</Value>
+    </Setting>
+    <Setting Name="UseOwnWakeUpPort" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="OwnWakeUpPortNumber" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">43537</Value>
+    </Setting>
+    <Setting Name="ServerIpAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="MacAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AA:BB:AA:BB:AA:BB</Value>
+    </Setting>
+    <Setting Name="WakeUpLocalOnStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="WakeUpByServerOnStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoCloseAfterWakeUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

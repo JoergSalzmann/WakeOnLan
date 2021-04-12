@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLan", "WakeOnLan\WakeOnLan.csproj", "{AA9C5C50-A7CF-42D2-8FA8-380FE50F5FFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanClient", "WakeOnLanClient\WakeOnLanClient.csproj", "{A9106057-1594-480D-B202-36CD228D1641}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanServer", "WakeOnLanServer\WakeOnLanServer.csproj", "{47003286-4342-4A03-88E1-3131B4C474EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanMonitor", "WakeOnLanMonitor\WakeOnLanMonitor.csproj", "{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA9C5C50-A7CF-42D2-8FA8-380FE50F5FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA9C5C50-A7CF-42D2-8FA8-380FE50F5FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA9C5C50-A7CF-42D2-8FA8-380FE50F5FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA9C5C50-A7CF-42D2-8FA8-380FE50F5FFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9106057-1594-480D-B202-36CD228D1641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9106057-1594-480D-B202-36CD228D1641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9106057-1594-480D-B202-36CD228D1641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9106057-1594-480D-B202-36CD228D1641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47003286-4342-4A03-88E1-3131B4C474EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47003286-4342-4A03-88E1-3131B4C474EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47003286-4342-4A03-88E1-3131B4C474EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47003286-4342-4A03-88E1-3131B4C474EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D588195A-568C-4936-9271-E2E972CC5B74}
+	EndGlobalSection
+EndGlobal
