@@ -79,12 +79,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WakeOnLan\WakeOnLan.csproj">
-      <Project>{aa9c5c50-a7cf-42d2-8fa8-380fe50f5ffc}</Project>
-      <Name>WakeOnLan</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Wecker.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +89,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WakeOnLan\WakeOnLan.csproj">
+      <Project>{5dd18d49-00d6-4fa0-8c60-edbe4c0b6041}</Project>
+      <Name>WakeOnLan</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,9 +13,10 @@ namespace WakeOnLan
 {
     public class Server
     {
-        private readonly SynchronizedCollection<ServerHelper> Clients = new SynchronizedCollection<ServerHelper>();
+        private readonly ConcurrentDictionary<int, ServerHelper> Clients = new ConcurrentDictionary<int, ServerHelper>();
         private Thread thread;
         private bool Listen = false;
+        private int connectionID = 0;
 
         internal bool IsAlive
         {
@@ -120,6 +122,9 @@ namespace WakeOnLan
             Socket newSocket = listener.AcceptSocket();
             if (newSocket == null) return;
 
+            //Connection-ID
+            int id = connectionID++;
+            
             // Instanz der serverseitigen Verwaltungsklasse erzeugen
             ServerHelper newConnection = new ServerHelper(newSocket);
             newConnection.DeubgMessage += (s, ea) => OnDebugMessage(ea.Message);
@@ -128,7 +133,7 @@ namespace WakeOnLan
             newConnection.ConnectionClosed += (s, ea) =>
             {
                 //Client entfernen
-                Clients.Remove(newConnection);
+                Clients.TryRemove(id, out _);
                 OnDebugMessage(newSocket.RemoteEndPoint + " - connection closed (Clients: " + Clients.Count + ")");
 
                 //Zeitmessung stoppen und ausgeben
@@ -137,7 +142,7 @@ namespace WakeOnLan
             };
 
             //Client hinzufügen
-            Clients.Add(newConnection);
+            Clients.TryAdd(id, newConnection);
             OnDebugMessage(newSocket.RemoteEndPoint + " - connected (Clients: " + Clients.Count + ")");
         }
 
