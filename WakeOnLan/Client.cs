@@ -8,45 +8,45 @@ namespace WakeOnLan
 {
     public class Client
     {
-        public bool WakeUpLocal(string MacAddress, out string Result)
+        public async Task<ClientResult> WakeUpLocalAsync(string MacAddress)
         {
-            return WakeUpLocal(MacAddress, Ports.WakeUp, out Result);
+            return await WakeUpLocalAsync(MacAddress, Ports.WakeUp);
         }
 
-        public bool WakeUpLocal(string MacAddress, int WakeUpPort, out string Result)
+        public async Task<ClientResult> WakeUpLocalAsync(string MacAddress, int WakeUpPort)
         {
             //Mac-Adresse in Byte-Array konvertieren - Fehler -> Abbruch
-            if (!Convert.MacAddressStringToByteArray(MacAddress, out byte[] mac, out Result))
-                return false;
+            if (!Convert.MacAddressStringToByteArray(MacAddress, out byte[] mac, out string Result))
+                return new ClientResult() { Result = Result, Success = false };
 
             //Port prüfen
             if (!Check.CheckPortInUserPortRange(WakeUpPort, out Result))
-                return false;
+                return new ClientResult() { Result = Result, Success = false };
 
             //MagicPacket versenden
-            return WakeUp.SendMagicPacket(mac, WakeUpPort, out Result);
+            return await WakeUp.SendMagicPacketAsync(mac, WakeUpPort);
         }
 
-        public bool WakeUpByServer(string ServerIpAddress, string MacAddress, string ClientProgrammName, out string Result)
+        public async Task<ClientResult> WakeUpByServerAsync(string ServerIpAddress, string MacAddress, string ClientProgrammName)
         {
-            return WakeUpByServer(ServerIpAddress, MacAddress, ClientProgrammName, Ports.Server, out Result);
+            return await WakeUpByServerAsync(ServerIpAddress, MacAddress, ClientProgrammName, Ports.Server);
         }
 
-        public bool WakeUpByServer(string ServerIpAddress, string MacAddress, string ClientProgrammName, int ServerPort, out string Result)
+        public async Task<ClientResult> WakeUpByServerAsync(string ServerIpAddress, string MacAddress, string ClientProgrammName, int ServerPort)
         {
             //Mac-Adresse in Byte-Array konvertieren - Fehler -> Abbruch
-            if (!Convert.MacAddressStringToByteArray(MacAddress, out byte[] mac, out Result))
-                return false;
+            if (!Convert.MacAddressStringToByteArray(MacAddress, out byte[] mac, out string Result))
+                return new ClientResult() { Result = Result, Success = false };
 
             //Port prüfen
             if (!Check.CheckPortInUserPortRange(ServerPort, out Result))
-                return false;
+                return new ClientResult() { Result = Result, Success = false };
 
             try
             {
                 //MAC-Adresse zum Aufwecken an den Server senden
                 ClientHelper client = new ClientHelper(ServerIpAddress, ServerPort);
-                client.Send(new ClientToServer
+                await client.SendAsync(new ClientToServer
                 {
                     MacAddress = mac,
                     UserDomainName = Environment.UserDomainName,
@@ -55,18 +55,22 @@ namespace WakeOnLan
                 });
 
                 //Auf Antwort des Server warten
-                ServerToClient answer = (ServerToClient)client.Receive();
+                ServerToClient answer = (ServerToClient) await client.ReceiveAsync();
                 client.Close();
 
                 //Antwort ausgeben
-                Result = answer.Result;
-                return answer.WakeUpSuccess;
+                return new ClientResult() { Result = answer.Result, Success = answer.WakeUpSuccess };
             }
             catch (Exception ex)
             {
-                Result = ex.Message;
-                return false;
+                return new ClientResult() { Result = ex.Message, Success = false };
             }
         }
+    }
+
+    public class ClientResult
+    {
+        public bool Success { get; internal set; }
+        public string Result { get; internal set; }
     }
 }

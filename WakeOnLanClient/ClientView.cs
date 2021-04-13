@@ -27,7 +27,7 @@ namespace WakeOnLanClient
             controller = new ClientController(Text);
         }
 
-        private void ClientView_Load(object sender, EventArgs e)
+        private async void ClientView_Load(object sender, EventArgs e)
         {
             //Lokales Aufwecken
             rbOwnWakeUpPort.DataBindings.Add(nameof(RadioButton.Checked), controller, nameof(ClientController.UseOwnWakeUpPort), false, DataSourceUpdateMode.OnPropertyChanged);
@@ -45,8 +45,8 @@ namespace WakeOnLanClient
             //MAC-Adresse und Buttons
             tbMacAddress.DataBindings.Add(nameof(Text), controller, nameof(ClientController.MacAddress), false, DataSourceUpdateMode.OnPropertyChanged);
             cbAutoCloseAfterWakeUp.DataBindings.Add(nameof(CheckBox.Checked), controller, nameof(ClientController.AutoCloseAfterWakeUp), false, DataSourceUpdateMode.OnPropertyChanged);
-            btnWakeUpLocal.Click += (s, ea) => controller.WakeUpLocal();
-            btnWakeUpByServer.Click += (s, ea) => controller.WakeUpByServer();
+            btnWakeUpLocal.Click += async (s, ea) => await controller.WakeUpLocalAsync();
+            btnWakeUpByServer.Click += async (s, ea) => await controller.WakeUpByServerAsync();
             btnClearLog.Click += (s, ea) => lvLog.Items.Clear();
 
             //Meldungen
@@ -54,7 +54,7 @@ namespace WakeOnLanClient
             controller.CloseProgramm += (s, ea) => { try { Invoke(new MethodInvoker(delegate { CloseProgramm(); })); } catch { } };
 
             //Automatisches Aufwecken bei Programmstart
-            controller.WakeUpOnStartup();
+            await controller.WakeUpOnStartupAsync();
         }
 
         private void AddLog(string Message)

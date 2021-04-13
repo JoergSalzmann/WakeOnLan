@@ -14,28 +14,18 @@ namespace WakeOnLan
     internal class ClientHelper
     {
         private Socket socket = null;
+        private readonly string Address;
+        private readonly int port;
 
         public ClientHelper(string Address, int port)
         {
-            try
-            {
-                IPEndPoint ep = new IPEndPoint(IPAddress.Parse(Address), port);
-                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                socket.Connect(ep);
-            }
-            catch (SecurityException ex)
-            {
-                throw new Exception("Fehler beim Aufbauen der Verbindung zum Server, prüfen Sie die Firewall- und Sicherheitseinstellungen", ex);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Fehler beim Aufbauen der Verbindung zum Server", ex);
-            }
+            this.Address = Address;
+            this.port = port;
         }
 
-        public int Send(object data)
+        public async Task<int> SendAsync(object data)
         {
-            if (socket == null) return 0;
+            if (socket == null) await ConnectAsync();
             if (data == null) return 0;
 
             byte[] bData = new SerializeData().Serialize(data);
@@ -44,8 +34,10 @@ namespace WakeOnLan
             return socket.Send(bData);
         }
 
-        public object Receive()
+        public async Task<object> ReceiveAsync()
         {
+            if (socket == null) await ConnectAsync();
+
             int cnt = 0;
             MemoryStream mem = new MemoryStream();
             byte[] buffer = new byte[ClientServerProperties.BufferSize];
@@ -68,6 +60,24 @@ namespace WakeOnLan
                 }
             }
             return null;
+        }
+
+        private async Task ConnectAsync()
+        {
+            try
+            {
+                IPEndPoint ep = new IPEndPoint(IPAddress.Parse(Address), port);
+                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                await socket.ConnectAsync(ep);
+            }
+            catch (SecurityException ex)
+            {
+                throw new Exception("Fehler beim Aufbauen der Verbindung zum Server, prüfen Sie die Firewall- und Sicherheitseinstellungen", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Fehler beim Aufbauen der Verbindung zum Server", ex);
+            }
         }
 
         public void Close()

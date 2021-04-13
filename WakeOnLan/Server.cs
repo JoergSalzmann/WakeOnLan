@@ -124,11 +124,11 @@ namespace WakeOnLan
 
             //Connection-ID
             int id = connectionID++;
-            
+
             // Instanz der serverseitigen Verwaltungsklasse erzeugen
             ServerHelper newConnection = new ServerHelper(newSocket);
             newConnection.DeubgMessage += (s, ea) => OnDebugMessage(ea.Message);
-            newConnection.DataReceived += (s, ea) => NewDataFromClient(WakeUpPort, ea, newSocket);
+            newConnection.DataReceived += async (s, ea) => await NewDataFromClientAsync(WakeUpPort, ea, newSocket);
             newConnection.ExceptionRaised += (s, ea) => OnExceptionRaised(ea.Message);
             newConnection.ConnectionClosed += (s, ea) =>
             {
@@ -146,7 +146,7 @@ namespace WakeOnLan
             OnDebugMessage(newSocket.RemoteEndPoint + " - connected (Clients: " + Clients.Count + ")");
         }
 
-        private void NewDataFromClient(int WakeUpPort, ReceiveEventArgs ea, Socket socket)
+        private async Task NewDataFromClientAsync(int WakeUpPort, ReceiveEventArgs ea, Socket socket)
         {
             try
             {
@@ -155,8 +155,12 @@ namespace WakeOnLan
                 OnRequestFromClient("Anfrage von: " + socket.RemoteEndPoint.ToString() + GetClientInformationString(receive));
 
                 //PC aufwecken
-                ServerToClient answer = new ServerToClient();
-                answer.WakeUpSuccess = WakeUp.SendMagicPacket(receive.MacAddress, WakeUpPort, out answer.Result);
+                var clientResult = await WakeUp.SendMagicPacketAsync(receive.MacAddress, WakeUpPort);
+                ServerToClient answer = new ServerToClient
+                {
+                    WakeUpSuccess = clientResult.Success,
+                    Result = clientResult.Result
+                };
                 ea.Client.Send(answer);
 
                 //Erfolg melden
