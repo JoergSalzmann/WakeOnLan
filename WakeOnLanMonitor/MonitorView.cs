@@ -22,7 +22,7 @@ namespace WakeOnLanMonitor
 
             //Version und Titel
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
-            Text = "WakeOnLanMonitor " + v.Major + "." + v.Minor;// + " beta";
+            Text = "WakeOnLanMonitor " + v.Major + "." + v.Minor + " RC 1";
             Icon = Resources.Monitor;
         }
 
