@@ -8,6 +8,24 @@ namespace WakeOnLan
 {
     public class Client
     {
+        public bool WakeUpLocal(string MacAddress, out string Result)
+        {
+            return WakeUpLocal(MacAddress, Ports.WakeUp, out Result);
+        }
+
+        public bool WakeUpLocal(string MacAddress, int WakeUpPort, out string Result)
+        {
+            ClientResult clientResult = null;
+
+            Task.Run(async delegate
+            {
+                clientResult = await WakeUpLocalAsync(MacAddress, WakeUpPort);
+            }).Wait();
+
+            Result = clientResult.Result;
+            return clientResult.Success;
+        }
+
         public async Task<ClientResult> WakeUpLocalAsync(string MacAddress)
         {
             return await WakeUpLocalAsync(MacAddress, Ports.WakeUp);
@@ -25,6 +43,24 @@ namespace WakeOnLan
 
             //MagicPacket versenden
             return await WakeUp.SendMagicPacketAsync(mac, WakeUpPort);
+        }
+
+        public bool WakeUpByServer(string ServerIpAddress, string MacAddress, string ClientProgrammName, out string Result)
+        {
+            return WakeUpByServer(ServerIpAddress, MacAddress, ClientProgrammName, Ports.Server, out Result);
+        }
+
+        public bool WakeUpByServer(string ServerIpAddress, string MacAddress, string ClientProgrammName, int ServerPort, out string Result)
+        {
+            ClientResult clientResult = null;
+
+            Task.Run(async delegate
+            {
+                clientResult = await WakeUpByServerAsync(ServerIpAddress, MacAddress, ClientProgrammName, ServerPort);
+            }).Wait();
+
+            Result = clientResult.Result;
+            return clientResult.Success;
         }
 
         public async Task<ClientResult> WakeUpByServerAsync(string ServerIpAddress, string MacAddress, string ClientProgrammName)
@@ -55,7 +91,7 @@ namespace WakeOnLan
                 });
 
                 //Auf Antwort des Server warten
-                ServerToClient answer = (ServerToClient) await client.ReceiveAsync();
+                ServerToClient answer = (ServerToClient)await client.ReceiveAsync();
                 client.Close();
 
                 //Antwort ausgeben
