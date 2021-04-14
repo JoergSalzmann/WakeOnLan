@@ -27,6 +27,24 @@ namespace WakeOnLan
             return WakeUp.SendMagicPacket(mac, WakeUpPort, out Result);
         }
 
+        public async Task<ClientResult> WakeUpLocalAsync(string MacAddress)
+        {
+            return await WakeUpLocalAsync(MacAddress, Ports.WakeUp);
+        }
+
+        public async Task<ClientResult> WakeUpLocalAsync(string MacAddress, int WakeUpPort)
+        {
+            var clientResult = new ClientResult();
+
+            await Task.Run(delegate
+            {
+                clientResult.Success = WakeUpLocal(MacAddress, WakeUpPort, out string Result);
+                clientResult.Result = Result;
+            });
+
+            return clientResult;
+        }
+
         public bool WakeUpByServer(string ServerIpAddress, string MacAddress, string ClientProgrammName, out string Result)
         {
             return WakeUpByServer(ServerIpAddress, MacAddress, ClientProgrammName, Ports.Server, out Result);
@@ -76,5 +94,29 @@ namespace WakeOnLan
                 return false;
             }
         }
+
+        public async Task<ClientResult> WakeUpByServerAsync(string ServerIpAddress, string MacAddress, string ClientProgrammName)
+        {
+            return await WakeUpByServerAsync(ServerIpAddress, MacAddress, ClientProgrammName, Ports.Server);
+        }
+
+        public async Task<ClientResult> WakeUpByServerAsync(string ServerIpAddress, string MacAddress, string ClientProgrammName, int ServerPort)
+        {
+            var clientResult = new ClientResult();
+
+            await Task.Run(delegate
+            {
+                clientResult.Success = WakeUpByServer(ServerIpAddress, MacAddress, ClientProgrammName, ServerPort, out string Result);
+                clientResult.Result = Result;
+            });
+
+            return clientResult;
+        }
+    }
+
+    public class ClientResult
+    {
+        public bool Success { get; internal set; }
+        public string Result { get; internal set; }
     }
 }

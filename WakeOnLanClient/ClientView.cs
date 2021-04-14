@@ -45,8 +45,8 @@ namespace WakeOnLanClient
             //MAC-Adresse und Buttons
             tbMacAddress.DataBindings.Add(nameof(Text), controller, nameof(ClientController.MacAddress), false, DataSourceUpdateMode.OnPropertyChanged);
             cbAutoCloseAfterWakeUp.DataBindings.Add(nameof(CheckBox.Checked), controller, nameof(ClientController.AutoCloseAfterWakeUp), false, DataSourceUpdateMode.OnPropertyChanged);
-            btnWakeUpLocal.Click += (s, ea) => controller.WakeUpLocal();
-            btnWakeUpByServer.Click += (s, ea) => controller.WakeUpByServer();
+            btnWakeUpLocal.Click += (s, ea) => controller.WakeUpLocalAsync();
+            btnWakeUpByServer.Click += (s, ea) => controller.WakeUpByServerAsync();
             btnClearLog.Click += (s, ea) => lvLog.Items.Clear();
 
             //Meldungen
