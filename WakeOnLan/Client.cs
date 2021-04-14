@@ -59,8 +59,16 @@ namespace WakeOnLan
                 client.Close();
 
                 //Antwort ausgeben
-                Result = answer.Result;
-                return answer.WakeUpSuccess;
+                if (answer != null)
+                {
+                    Result = answer.Result;
+                    return answer.WakeUpSuccess;
+                }
+                else
+                {
+                    Result = "Die Anfrage zum Aufwecken wurde an den Server gesendet, es wurde jedoch keine Antwort empfangen";
+                    return false;
+                }
             }
             catch (Exception ex)
             {
