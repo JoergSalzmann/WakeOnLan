@@ -10,24 +10,20 @@ namespace WakeOnLan
 {
     internal class WakeUp
     {
-        internal static async Task<ClientResult> SendMagicPacketAsync(byte[] Mac, int Port)
+        internal static bool SendMagicPacket(byte[] Mac, int Port, out string Result)
         {
-            var result = new ClientResult();
-
             //MAC-Adresse NULL?
             if (Mac == null)
             {
-                result.Result = "Es wurde keine MAC-Adresse angegeben";
-                result.Success = false;
-                return result;
+                Result = "Es wurde keine MAC-Adresse angegeben";
+                return false;
             }
 
             //Länge der MAC-Adresse muss sechs Byte betragen
             if (Mac.Length != 6)
             {
-                result.Result = "Die angegebene MAC-Adresse hat nicht die erforderliche Länge von 6 Byte";
-                result.Success = false;
-                return result;
+                Result = "Die angegebene MAC-Adresse hat nicht die erforderliche Länge von 6 Byte";
+                return false;
             }
 
             try
@@ -49,16 +45,14 @@ namespace WakeOnLan
                         packet[i * 6 + j] = Mac[j];
 
                 //Magic-Packet versenden und Erfolg melden
-                await client.SendAsync(packet, packet.Length);
-                result.Result = "Der Befehl zum Aufwachen wurde an die MAC-Adresse '" + BitConverter.ToString(Mac) + "' gesendet";
-                result.Success = true;
-                return result;
+                client.Send(packet, packet.Length);
+                Result = "Der Befehl zum Aufwachen wurde an die MAC-Adresse '" + BitConverter.ToString(Mac) + "' gesendet";
+                return true;
             }
             catch (Exception ex)
             {
-                result.Result = ex.Message;
-                result.Success = false;
-                return result;
+                Result = ex.Message;
+                return false;
             }
         }
     }

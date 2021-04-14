@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using WakeOnLan;
 using WakeOnLanClient.Properties;
 
@@ -80,39 +79,49 @@ namespace WakeOnLanClient
             set { Settings.Default.AutoCloseAfterWakeUp = value; Settings.Default.Save(); }
         }
 
-        public async Task WakeUpOnStartupAsync()
+        public void WakeUpOnStartup()
         {
             if (WakeUpLocalOnStartup)
-                await WakeUpLocalAsync();
+                WakeUpLocal();
             else if (WakeUpByServerOnStartup)
-                await WakeUpByServerAsync();
+                WakeUpByServer();
         }
 
-        public async Task WakeUpLocalAsync()
+        public void WakeUpLocal()
         {
-            ClientResult clientResult;
+            Thread th = new Thread(new ThreadStart(delegate
+            {
+                bool Success = false;
+                string Result;
 
-            if (UseOwnWakeUpPort)
-                clientResult = await client.WakeUpLocalAsync(MacAddress, OwnWakeUpPortNumber);
-            else clientResult = await client.WakeUpLocalAsync(MacAddress);
+                if (UseOwnWakeUpPort)
+                    Success = client.WakeUpLocal(MacAddress, OwnWakeUpPortNumber, out Result);
+                else Success = client.WakeUpLocal(MacAddress, out Result);
 
-            OnNewMessage(clientResult.Result);
-            if (clientResult.Success && AutoCloseAfterWakeUp)
-                OnCloseProgramm();
+                OnNewMessage(Result);
+                if (Success && AutoCloseAfterWakeUp)
+                    OnCloseProgramm();
+            }));
+            th.Start();
         }
 
-        public async Task WakeUpByServerAsync()
+        public void WakeUpByServer()
         {
-            ClientResult clientResult;
-            OnNewMessage("Verbindungsaufbau zum Server mit der IP-Adresse: " + ServerIpAddress);
+            Thread th = new Thread(new ThreadStart(delegate
+            {
+                bool Success = false;
+                string Result;
+                OnNewMessage("Verbindungsaufbau zum Server mit der IP-Adresse: " + ServerIpAddress);
 
-            if (UseOwnServerPort)
-                clientResult = await client.WakeUpByServerAsync(ServerIpAddress, MacAddress, ProgrammName, OwnServerPortNumber);
-            else clientResult = await client.WakeUpByServerAsync(ServerIpAddress, MacAddress, ProgrammName);
+                if (UseOwnServerPort)
+                    Success = client.WakeUpByServer(ServerIpAddress, MacAddress, ProgrammName, OwnServerPortNumber, out Result);
+                else Success = client.WakeUpByServer(ServerIpAddress, MacAddress, ProgrammName, out Result);
 
-            OnNewMessage(clientResult.Result);
-            if (clientResult.Success && AutoCloseAfterWakeUp)
-                OnCloseProgramm();
+                OnNewMessage(Result);
+                if (Success && AutoCloseAfterWakeUp)
+                    OnCloseProgramm();
+            }));
+            th.Start();
         }
 
         public event EventHandler<StringEventArgs> NewMessage;
