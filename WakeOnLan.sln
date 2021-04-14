@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanServer", "WakeOnLanServer\WakeOnLanServer.csproj", "{47003286-4342-4A03-88E1-3131B4C474EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanMonitor", "WakeOnLanMonitor\WakeOnLanMonitor.csproj", "{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakeOnLan", "WakeOnLan\WakeOnLan.csproj", "{5DD18D49-00D6-4FA0-8C60-EDBE4C0B6041}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanClient", "WakeOnLanClient\WakeOnLanClient.csproj", "{88FA90EA-CE62-4748-9A82-E64D39845D07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanMonitor", "WakeOnLanMonitor\WakeOnLanMonitor.csproj", "{ECB26CF1-003B-420F-A561-2E4A36D9F7AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{47003286-4342-4A03-88E1-3131B4C474EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47003286-4342-4A03-88E1-3131B4C474EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47003286-4342-4A03-88E1-3131B4C474EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE32C87D-FDC5-41AE-9023-7EBA664D2A46}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DD18D49-00D6-4FA0-8C60-EDBE4C0B6041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DD18D49-00D6-4FA0-8C60-EDBE4C0B6041}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DD18D49-00D6-4FA0-8C60-EDBE4C0B6041}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{88FA90EA-CE62-4748-9A82-E64D39845D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88FA90EA-CE62-4748-9A82-E64D39845D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88FA90EA-CE62-4748-9A82-E64D39845D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB26CF1-003B-420F-A561-2E4A36D9F7AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB26CF1-003B-420F-A561-2E4A36D9F7AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB26CF1-003B-420F-A561-2E4A36D9F7AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB26CF1-003B-420F-A561-2E4A36D9F7AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
