@@ -2,13 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.2.0</Version>
+    <Version>2.2.0-beta</Version>
     <Authors>Jörg Salzmann</Authors>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <Copyright>Copyright (c) 2021 Jörg Salzmann</Copyright>
     <NeutralLanguage>de-DE</NeutralLanguage>
     <RepositoryUrl>https://github.com/JoergSalzmann/WakeOnLan</RepositoryUrl>
+    <PackageId>WakeOnLanCSM</PackageId>
+    <Description>Library with client, server, and monitor functionality.
+Client: Send magic packet directly or request the server to send the magic packet.
+Server: Receives requests from the client and send the magic packet.
+Monitor: Receives magic packets.</Description>
+    <PackageTags>Library with client, server, and monitor functionality.</PackageTags>
+    <RepositoryType>Public</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
