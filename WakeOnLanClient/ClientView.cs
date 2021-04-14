@@ -22,7 +22,7 @@ namespace WakeOnLanClient
 
             //Version und Titel
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
-            Text = "WakeOnLanClient " + v.Major + "." + v.Minor + " RC 1";
+            Text = "WakeOnLanClient " + v.Major + "." + v.Minor + " RC 2";
             Icon = Resources.Wecker;
             controller = new ClientController(Text);
         }
