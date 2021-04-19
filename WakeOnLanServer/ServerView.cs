@@ -22,7 +22,7 @@ namespace WakeOnLanServer
 
             //Version und Titel
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
-            Text = "WakeOnLanServer " + v.Major + "." + v.Minor + " RC 2";
+            Text = "WakeOnLanServer " + v.Major + "." + v.Minor + " RC 3";
             Icon = Resources.WOL;
         }
 
