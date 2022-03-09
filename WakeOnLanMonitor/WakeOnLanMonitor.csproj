@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject>WakeOnLanMonitor.Program</StartupObject>
     <ApplicationIcon>Monitor.ico</ApplicationIcon>
-    <Version>2.2.0</Version>
+    <Version>2.3.0</Version>
     <Authors>Jörg Salzmann</Authors>
     <Copyright>Copyright (c) 2021 Jörg Salzmann</Copyright>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
