@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,7 +20,7 @@ namespace WakeOnLanClient
             InitializeComponent();
 
             //Version und Titel
-            Version v = Assembly.GetExecutingAssembly().GetName().Version;
+            Version v = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             Text = "WakeOnLanClient " + v.Major + "." + v.Minor; // + " RC 3";
             Icon = Resources.Wecker;
             controller = new ClientController(Text);
