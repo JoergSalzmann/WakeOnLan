@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29920.165
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakeOnLan", "WakeOnLan\WakeOnLan.csproj", "{5DD18D49-00D6-4FA0-8C60-EDBE4C0B6041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanClient", "WakeOnLanClient\WakeOnLanClient.csproj", "{88FA90EA-CE62-4748-9A82-E64D39845D07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakeOnLanClient", "WakeOnLanClient\WakeOnLanClient.csproj", "{88FA90EA-CE62-4748-9A82-E64D39845D07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanMonitor", "WakeOnLanMonitor\WakeOnLanMonitor.csproj", "{ECB26CF1-003B-420F-A561-2E4A36D9F7AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakeOnLanMonitor", "WakeOnLanMonitor\WakeOnLanMonitor.csproj", "{ECB26CF1-003B-420F-A561-2E4A36D9F7AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakeOnLanServer", "WakeOnLanServer\WakeOnLanServer.csproj", "{8D058810-A307-4598-8258-2188B0DE27F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakeOnLanServer", "WakeOnLanServer\WakeOnLanServer.csproj", "{8D058810-A307-4598-8258-2188B0DE27F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleServer", "ConsoleServer\ConsoleServer.csproj", "{AE75890C-0CC8-46BF-A4C9-FF8C4683D486}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8D058810-A307-4598-8258-2188B0DE27F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D058810-A307-4598-8258-2188B0DE27F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D058810-A307-4598-8258-2188B0DE27F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE75890C-0CC8-46BF-A4C9-FF8C4683D486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE75890C-0CC8-46BF-A4C9-FF8C4683D486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE75890C-0CC8-46BF-A4C9-FF8C4683D486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE75890C-0CC8-46BF-A4C9-FF8C4683D486}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
