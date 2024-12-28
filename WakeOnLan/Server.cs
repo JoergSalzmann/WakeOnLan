@@ -151,7 +151,7 @@ namespace WakeOnLan
             try
             {
                 //Daten vom Client auswerten
-                ClientToServer receive = (ClientToServer)ea.Data;
+                ClientToServer receive = ea.Data;
                 OnRequestFromClient("Anfrage von: " + socket.RemoteEndPoint.ToString() + GetClientInformationString(receive));
 
                 //PC aufwecken

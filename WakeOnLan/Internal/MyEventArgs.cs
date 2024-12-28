@@ -28,10 +28,10 @@ namespace WakeOnLan
 
     internal class ReceiveEventArgs : EventArgs
     {
-        internal  ServerHelper Client { get; private set; }
-        internal object Data { get; private set; }
+        internal ServerHelper Client { get; private set; }
+        internal ClientToServer Data { get; private set; }
 
-        internal ReceiveEventArgs(ServerHelper Client,object Data)
+        internal ReceiveEventArgs(ServerHelper Client, ClientToServer Data)
         {
             this.Client = Client;
             this.Data = Data;

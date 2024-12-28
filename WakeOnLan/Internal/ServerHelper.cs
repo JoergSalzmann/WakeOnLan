@@ -47,7 +47,7 @@ namespace WakeOnLan
                                     break;
                                 }
                             OnDeubgMessage(socket.RemoteEndPoint + " - new data received");
-                            OnDataReceived(this, new SerializeData().Deserialize(mem.ToArray()));
+                            OnDataReceived(this, new SerializeData().DeserializeC(mem.ToArray()));
                             mem.Seek(0, SeekOrigin.Begin);
                             mem.SetLength(0);
                             TimeOut = 0;
@@ -71,7 +71,7 @@ namespace WakeOnLan
             th.Start();
         }
 
-        public void Send(object Data)
+        public void Send(ServerToClient Data)
         {
             socket.Send(new SerializeData().Serialize(Data));
             OnDeubgMessage(socket.RemoteEndPoint + " - answer was send");
@@ -90,7 +90,7 @@ namespace WakeOnLan
         }
 
         internal event EventHandler<ReceiveEventArgs> DataReceived;
-        protected virtual void OnDataReceived(ServerHelper client, object data)
+        protected virtual void OnDataReceived(ServerHelper client, ClientToServer data)
         {
             DataReceived?.Invoke(this, new ReceiveEventArgs(client, data));
         }

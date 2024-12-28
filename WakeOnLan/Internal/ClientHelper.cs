@@ -33,7 +33,7 @@ namespace WakeOnLan
             }
         }
 
-        public int Send(object data)
+        public int Send(ClientToServer data)
         {
             if (socket == null) return 0;
             if (data == null) return 0;
@@ -44,7 +44,7 @@ namespace WakeOnLan
             return socket.Send(bData);
         }
 
-        public object Receive()
+        public ServerToClient Receive()
         {
             int cnt = 0;
             MemoryStream mem = new MemoryStream();
@@ -60,7 +60,7 @@ namespace WakeOnLan
                 Thread.Sleep(ClientServerProperties.SleepTimeClient);
                 if (mem.Length > 0 && socket.Available == 0)
                 {
-                    return new SerializeData().Deserialize(mem.ToArray());
+                    return new SerializeData().DeserializeS(mem.ToArray());
                 }
                 else
                 {

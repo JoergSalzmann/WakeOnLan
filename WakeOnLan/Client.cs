@@ -73,7 +73,7 @@ namespace WakeOnLan
                 });
 
                 //Auf Antwort des Server warten
-                ServerToClient answer = (ServerToClient)client.Receive();
+                ServerToClient answer = client.Receive();
                 client.Close();
 
                 //Antwort ausgeben
