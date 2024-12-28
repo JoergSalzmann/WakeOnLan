@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>2.4.0</Version>
+    <Version>3.0.0-test</Version>
     <Authors>Jörg Salzmann</Authors>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <Copyright>Copyright (c) 2021 Jörg Salzmann</Copyright>
+    <Copyright>Copyright (c) 2024 Jörg Salzmann</Copyright>
     <NeutralLanguage>de-DE</NeutralLanguage>
     <RepositoryUrl>https://github.com/JoergSalzmann/WakeOnLan</RepositoryUrl>
     <PackageId>WakeOnLanCSM</PackageId>
